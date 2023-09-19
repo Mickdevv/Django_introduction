@@ -7,4 +7,4 @@ class CreateNewList(forms.Form):
 
 class CreateNewitem(forms.Form):
     name = forms.CharField(label="Name", required=False)
-    age = forms.IntegerField(label="Age", max_value=150)
+    age = forms.IntegerField(label="Age", max_value=151)
