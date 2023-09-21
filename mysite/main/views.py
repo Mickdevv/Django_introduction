@@ -45,7 +45,7 @@ def create(response):
             t = ToDoList(name=n)
             t.save()
         
-        return HttpResponseRedirect("/%i" %t.id)
+            return HttpResponseRedirect("/%i" %t.id)
     else :
         form = CreateNewList()
 
