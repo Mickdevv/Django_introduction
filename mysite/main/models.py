@@ -16,4 +16,4 @@ class Item(models.Model):
     complete = models.BooleanField()
 
     def __str__(self):
-        return self.text
+        return self.text 
