@@ -5,7 +5,11 @@ View
 {% endblock %}
 
 {% block content %}
-    {% for td in user.todolist.all %}
-        <p><a href="/{{td.id}}">{{td.name}}</a></p>
-    {% endfor %}
+    {% if user.is_authenticated %}
+        {% for td in user.todolist.all %}
+            <p><a href="/{{td.id}}">{{td.name}}</a></p>
+        {% endfor %}
+    {% else %}
+        <h3>Please log in <a href="/login/">here</a> to view your lists</h3>
+    {% endif %}
 {% endblock %}

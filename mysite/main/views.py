@@ -69,3 +69,6 @@ def view(response):
     if verbosity == 1 :
         print("START - View method")
     return render(response, "main/view.html")
+
+def members(request):
+    return HttpResponse("Hello world!")
