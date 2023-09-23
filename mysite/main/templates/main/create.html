@@ -3,14 +3,18 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<h3>Create new list</h3>
-<form method="POST" action ="/create/" class="form-group">
-    {% csrf_token %}
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <button type="submit", name="save", class="btn-success">Create new</button>
-        </div>
-        {{form.name}}
-    </div>
-</form>
+    {% if user.is_authenticated %}
+        <h3>Create new list</h3>
+        <form method="POST" action ="/create/" class="form-group">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button type="submit", name="save", class="btn-success">Create new</button>
+                </div>
+                {{form.name}}
+            </div>
+        </form>
+    {% else %}
+        <h3>Please log in <a href="/login/">here</a> to create a list</h3>
+    {% endif %}
 {% endblock %}
