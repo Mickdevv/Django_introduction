@@ -16,6 +16,13 @@ def index(response, id):
         print(response.POST)
         print("\n")
 
+        # Delete selected items
+        if response.POST.get("delete"):
+            print("Delete method")
+            for item in ls.item_set.all():
+                if response.POST.get("c" + str(item.id)) == "clicked":
+                    item.delete()
+
         # Save changes to items
         if response.POST.get("save"):
             for item in ls.item_set.all():
@@ -23,7 +30,6 @@ def index(response, id):
                     item.complete = True
                 else: 
                     item.complete = False
-                
                 item.save()
         
         # Add new item 
