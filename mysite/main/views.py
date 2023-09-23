@@ -3,8 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
 
+verbosity = 1
 
 def index(response, id):
+    if verbosity == 1 :
+        print("Index method")
 
     ls = ToDoList.objects.get(id=id)
 
@@ -35,23 +38,34 @@ def index(response, id):
     return render(response, "main/list.html", {"ls":ls})
 
 def home(response):
+    print("HOME")
     return render(response, "main/home.html", {})
 
 def create(response):
+    if verbosity == 1 :
+        print()
+        print("START - Create method views.py")
     if response.method == "POST":
+        print("Response method POST")
         form = CreateNewList(response.POST)
         if form.is_valid():
+            print("Form is valid")
             n = form.cleaned_data["name"]
             t=ToDoList(name=n)
             t.save()
             response.user.todolist.add(t)
-        
+            if verbosity == 1 :
+                print("END - Create method views.py - Form is valid")
             return HttpResponseRedirect("/%i" %t.id)
     
     else :
+        if verbosity == 1 :
+            print("END - Create method views.py - Method != POST")
         form = CreateNewList()
 
     return render(response, "main/create.html", {"form":form})
 
 def view(response):
+    if verbosity == 1 :
+        print("START - View method")
     return render(response, "main/view.html")
